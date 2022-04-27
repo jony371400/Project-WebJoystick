@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<title>Joy TM</title>
+	<meta charset="utf-8">
+	<meta name="description" content="Example page of use pure Javascript JoyStick">
+	<meta name="author" content="Roberto D'Amico">
+
+	<link rel="shortcut icon" type="image/png" href="http://bobboteck.github.io/img/roberto-damico-bobboteck.png">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+
+	<script type="text/javascript"
+		src="http://static.robotwebtools.org/EventEmitter2/current/eventemitter2.min.js"></script>
+	<script type="text/javascript" src="http://static.robotwebtools.org/roslibjs/current/roslib.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+		crossorigin="anonymous"></script>
+	<script src="/Feature/joy.js"></script>
+
+</head>
+
+<link rel="stylesheet" href="/Asset/style.css">
+
+<body>
+	<div class="row">
+
+		<div class="columnLateral"">
+			<div id="joy1Div" style="width:300px;height:300px;margin:50px;"></div>
+			Posizione X:
+			<input id="joy1PosizioneX" type="text" /><br />
+			
+			Posizione Y:
+			<input id="joy1PosizioneY" type="text" /><br />
+			
+			Direzione:
+			<input id="joy1Direzione" type="text" /><br />
+			
+			X :
+			<input id="joy1X" type="text" /></br>
+			
+			Y :
+			<input id="joy1Y" type="text" />
+		</div>
+
+		<!-- <div class="columnLateral">
+			<div id="joy2Div"></div>
+			Posizione X:<input id="joy2PosizioneX" type="text" /></br>
+			Posizione Y:<input id="joy2PosizioneY" type="text" /></br>
+			Direzione:<input id="joy2Direzione" type="text" /></br>
+			X :<input id="joy2X" type="text" /></br>
+			Y :<input id="joy2Y" type="text" value="1" />
+		</div> -->
+
+	</div>
+
+	<p id="output"></p>
+	<button onclick="HandShake()">Publish</button>
+	<button onclick="Subscribe()">Subscribe</button>
+	<button onclick="Unsubscribe()">Unsubscribe</button><br />
+	<button onclick="Call_Service()">Clear</button><br />
+
+</body>
+
+<script src="/Feature/Controller.js"></script>
+
+</html>
