@@ -1,8 +1,9 @@
-// Connecting to ROS
+//#region ROS
 var ros = new ROSLIB.Ros({
     // url: 'ws://10.10.0.96:9090'
     url: 'ws://localhost:9090'
 });
+//#endregion
 
 //#region Websocket
 ros.on('connection', function () {
@@ -18,8 +19,8 @@ ros.on('close', function () {
 });
 //#endregion
 
+//#region TOPIC
 // Publishing a Topic
-// 创建一个topic,它的名字是'/cmd_vel',,消息类型是'geometry_msgs/Twist'
 var cmdVel = new ROSLIB.Topic({
     ros: ros,
     // name: 'ls50_velocity_controller/cmd_vel',
@@ -42,34 +43,29 @@ var twist = new ROSLIB.Message({
 });
 
 // Subscribing to a Topic
-// 创建一个topic,它的名字是'/chatter',,消息类型是'std_msgs/String'
 var listener = new ROSLIB.Topic({
     ros: ros,
     name: '/chatter',
     messageType: 'std_msgs/String'
+});
+//#endregion
+
+//#region SERVICE
+//Create Request
+var request = new ROSLIB.ServiceRequest({
 });
 
 // Create Service
 var Service_Clear = new ROSLIB.Service({
     ros: ros,
     name: '/clear',
-    serviceType: 'rospy_tutorials/AddTwoInts'
+    serviceType: 'rospy_tutorials/Clear'
 });
-
-//Create Request
-var request = new ROSLIB.ServiceRequest({
-});
+//#endregion
 
 //#region Function
 function HandShake()//在点击”Publish”按钮后发布消息，并对消息进行更改
 {
-    // twist.linear.x = 0.0;
-    // twist.linear.y = 0.0;
-    // twist.linear.z = 0.0;
-    // twist.angular.x = 0.0;
-    // twist.angular.y = 0.0;
-    // twist.angular.z = 0.0;
-
     // console.log(joy1X.value)
     // console.log(typeof(joy1X.value)
     // console.log(joy1Y.value)
@@ -97,7 +93,7 @@ function Unsubscribe()//在点击”Unsubscribe”按钮后取消订阅'/chatter
     listener.unsubscribe();
 }
 
-function Call_Service() {
+function Call_ClearService() {
     Service_Clear.callService(request, function (result) {
         console.log('Clear Success!')
     });
@@ -110,6 +106,7 @@ var joy1InputPosY = document.getElementById("joy1PosizioneY");
 var joy1Direzione = document.getElementById("joy1Direzione");
 var joy1Yjoy1X = document.getElementById("joy1X");
 var joy1Y = document.getElementById("joy1Y");
+
 var Joy1 = new JoyStick('joy1Div', {}, function (stickData) {
     joy1IinputPosX.value = stickData.xPosition;
     joy1InputPosY.value = stickData.yPosition;
